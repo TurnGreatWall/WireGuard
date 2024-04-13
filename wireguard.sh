@@ -1,12 +1,9 @@
 #!/bin/bash
 #
-# https://github.com/hwdsl2/wireguard-install
+# https://github.com/TurnGreatWall/WireGuard
 #
-# Based on the work of Nyr and contributors at:
-# https://github.com/Nyr/wireguard-install
 #
-# Copyright (c) 2022-2024 Lin Song <linsongui@gmail.com>
-# Copyright (c) 2020-2023 Nyr
+# Copyright (c) 2022-2024 WireGuard <ssdpay@gmail.com>
 #
 # Released under the MIT License, see the accompanying file LICENSE.txt
 # or https://opensource.org/licenses/MIT
@@ -978,7 +975,7 @@ else
 					firewall-cmd -q --permanent --zone=trusted --remove-source=10.7.0.0/24
 					firewall-cmd -q --direct --remove-rule ipv4 nat POSTROUTING 0 -s 10.7.0.0/24 ! -d 10.7.0.0/24 -j MASQUERADE
 					firewall-cmd -q --permanent --direct --remove-rule ipv4 nat POSTROUTING 0 -s 10.7.0.0/24 ! -d 10.7.0.0/24 -j MASQUERADE
-					if grep -qs '2001:470:48f6:d::1/64/64' /etc/wireguard/wg0.conf; then
+					if grep -qs '2001:470:48f6:d::1/64' /etc/wireguard/wg0.conf; then
 						ip6=$(firewall-cmd --direct --get-rules ipv6 nat POSTROUTING | grep '\-s 2001:470:48f6:d::/64 '"'"'!'"'"' -d 2001:470:48f6:d::/64' | grep -oE '[^ ]+$')
 						firewall-cmd -q --zone=trusted --remove-source=2001:470:48f6:d::/64
 						firewall-cmd -q --permanent --zone=trusted --remove-source=2001:470:48f6:d::/64
